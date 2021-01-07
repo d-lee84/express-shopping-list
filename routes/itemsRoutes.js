@@ -20,7 +20,7 @@ router.post("/", function(req, res, next) {
 
   db.items.push(item);
 
-  return res.json({added: item});
+  return res.status(201).json({added: item});
 });
 
 /** Get a single item from the shopping list */
