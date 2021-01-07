@@ -39,7 +39,7 @@ router.patch("/:name", function(req, res, next) {
   item.name = req.body.name;
   item.price = req.body.price;
 
-  return res.json(item);
+  return res.json({updated: item});
 });
 
 /** Deletes a single item from the shopping list */
