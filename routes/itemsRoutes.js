@@ -3,6 +3,8 @@ const db = require("../fakeDb");
 
 const router = express.Router();
 
+const HTTP_CREATED = 201;
+
 /** Give a list of shopping items */
 
 router.get("/", function(req, res, next) {
@@ -13,14 +15,12 @@ router.get("/", function(req, res, next) {
 /** Add an item to the shopping list */
 
 router.post("/", function(req, res, next) {
-  let item = {
-    name: req.body.name,
-    price: req.body.price,
-  }
+  // Object Destructing
+  let {name, price} = req.body;
 
-  db.items.push(item);
+  db.items.push({name, price});
 
-  return res.status(201).json({added: item});
+  return res.status(HTTP_CREATED).json({added: {name, price}});
 });
 
 /** Get a single item from the shopping list */
